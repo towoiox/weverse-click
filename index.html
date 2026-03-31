@@ -13,10 +13,17 @@ font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR
 text-align:center;
 }
 
+/* 네이비즘 잘라내기 */
+#navy-wrap{
+height:45vh;
+overflow:hidden;
+}
+
 #navy{
 width:100%;
-height:45vh;
+height:600px;
 border:none;
+margin-top:-120px;
 }
 
 #main{
@@ -24,7 +31,7 @@ padding:15px;
 }
 
 #clock{
-font-size:40px;
+font-size:48px;
 margin-bottom:20px;
 font-weight:700;
 color:#6ec6ff;
@@ -32,7 +39,7 @@ transition:color 0.15s linear;
 }
 
 .ms{
-font-size:18px;
+font-size:20px;
 }
 
 input{
@@ -66,11 +73,12 @@ white-space:pre-line;
 
 <body>
 
+<div id="navy-wrap">
 <iframe 
 id="navy"
-src="https://time.navyism.com/?host=weverse.io"
-sandbox="allow-scripts allow-same-origin">
+src="https://time.navyism.com/?host=weverse.io">
 </iframe>
+</div>
 
 <div id="main">
 
@@ -95,18 +103,20 @@ const ms=now.getMilliseconds();
 
 let intensity=0;
 
-if(sec>=55){
-intensity=(sec-55)/5+(ms/5000);
+// 50초부터 진해짐
+if(sec>=50){
+intensity=(sec-50)/10+(ms/10000);
 }
 
-// 채도 증가 방식
-const baseBlue = 255;
-const baseGreen = 198;
+// 기본 색
+const baseColor=[110,198,255];
 
-const green = Math.max(80, Math.floor(baseGreen - (baseGreen-80)*intensity));
-const blue = baseBlue;
+// 점점 진해지는 색
+const r=Math.floor(baseColor[0]*(1-intensity));
+const g=Math.floor(baseColor[1]*(1-intensity));
+const b=255;
 
-const color = "rgb(0,"+green+","+blue+")";
+const color="rgb("+r+","+g+","+b+")";
 
 const time=
 String(now.getHours()).padStart(2,"0")+":"+
