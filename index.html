@@ -24,8 +24,10 @@ padding:15px;
 }
 
 #clock{
-font-size:26px;
+font-size:28px;
 margin-bottom:20px;
+font-weight:700;
+color:#6ec6ff;
 transition:color 0.2s linear;
 }
 
@@ -46,7 +48,7 @@ font-size:16px;
 button{
 margin-top:15px;
 padding:14px 35px;
-background:#2EE6C6;
+background:#6ec6ff;
 border:none;
 border-radius:14px;
 color:white;
@@ -97,13 +99,8 @@ if(sec>=55){
 intensity=(sec-55)/5+(ms/5000);
 }
 
-const red=Math.min(255,Math.floor(255*intensity));
-const color="rgb("+red+",0,0)";
-
-const date=
-now.getFullYear()+"-"+
-String(now.getMonth()+1).padStart(2,"0")+"-"+
-String(now.getDate()).padStart(2,"0");
+const blue=Math.min(255,Math.floor(150+(105*intensity)));
+const color="rgb(0,120,"+blue+")";
 
 const time=
 String(now.getHours()).padStart(2,"0")+":"+
@@ -116,7 +113,7 @@ String(ms).padStart(3,"0");
 document.getElementById("clock").style.color=color;
 
 document.getElementById("clock").innerHTML=
-date+"<br>"+time+".<span class='ms'>"+milli+"</span>";
+time+".<span class='ms'>"+milli+"</span>";
 }
 
 setInterval(updateClock,50);
