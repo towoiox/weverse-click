@@ -13,9 +13,9 @@ font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR
 text-align:center;
 }
 
-/* 네이비즘 잘라내기 */
+/* 네이비즘 상하단 강하게 잘라내기 */
 #navy-wrap{
-height:45vh;
+height:170px;
 overflow:hidden;
 }
 
@@ -23,11 +23,11 @@ overflow:hidden;
 width:100%;
 height:600px;
 border:none;
-margin-top:-120px;
+margin-top:-140px;
 }
 
 #main{
-padding:15px;
+padding:10px 15px 15px 15px;
 }
 
 #clock{
@@ -35,11 +35,25 @@ font-size:48px;
 margin-bottom:20px;
 font-weight:700;
 color:#6ec6ff;
-transition:color 0.15s linear;
+transition:color 0.1s linear;
 }
 
+/* 밀리초 크게 */
 .ms{
-font-size:20px;
+font-size:30px;
+}
+
+/* 진동 효과 */
+.shake{
+animation:shake 0.08s infinite;
+}
+
+@keyframes shake{
+0%{transform:translate(0px,0px);}
+25%{transform:translate(1px,-1px);}
+50%{transform:translate(-1px,1px);}
+75%{transform:translate(1px,1px);}
+100%{transform:translate(0px,0px);}
 }
 
 input{
@@ -103,7 +117,7 @@ const ms=now.getMilliseconds();
 
 let intensity=0;
 
-// 50초부터 진해짐
+// 50초부터 살짝 진해짐
 if(sec>=50){
 intensity=(sec-50)/10+(ms/10000);
 }
@@ -111,10 +125,10 @@ intensity=(sec-50)/10+(ms/10000);
 // 기본 색
 const baseColor=[110,198,255];
 
-// 점점 진해지는 색
-const r=Math.floor(baseColor[0]*(1-intensity));
-const g=Math.floor(baseColor[1]*(1-intensity));
-const b=255;
+// 살짝만 진하게
+const r=Math.floor(baseColor[0]-(20*intensity));
+const g=Math.floor(baseColor[1]-(30*intensity));
+const b=Math.floor(baseColor[2]-(20*intensity));
 
 const color="rgb("+r+","+g+","+b+")";
 
@@ -126,10 +140,20 @@ String(now.getSeconds()).padStart(2,"0");
 const milli=
 String(ms).padStart(3,"0");
 
-document.getElementById("clock").style.color=color;
+const clock=document.getElementById("clock");
 
-document.getElementById("clock").innerHTML=
+clock.style.color=color;
+
+clock.innerHTML=
 time+".<span class='ms'>"+milli+"</span>";
+
+// 59초 진동
+if(sec>=59){
+clock.classList.add("shake");
+}else{
+clock.classList.remove("shake");
+}
+
 }
 
 setInterval(updateClock,30);
