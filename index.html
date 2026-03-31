@@ -24,7 +24,7 @@ padding:15px;
 }
 
 #clock{
-font-size:28px;
+font-size:40px;
 margin-bottom:20px;
 font-weight:700;
 color:#6ec6ff;
@@ -32,7 +32,7 @@ transition:color 0.2s linear;
 }
 
 .ms{
-font-size:15px;
+font-size:18px;
 }
 
 input{
@@ -99,7 +99,7 @@ if(sec>=55){
 intensity=(sec-55)/5+(ms/5000);
 }
 
-const blue=Math.min(255,Math.floor(150+(105*intensity)));
+const blue=Math.min(255,Math.floor(200+(55*intensity)));
 const color="rgb(0,120,"+blue+")";
 
 const time=
