@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>위버스 연습</title>
+
+<style>
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+"Noto Sans KR", sans-serif;
+text-align:center;
+margin-top:40px;
+}
+
+#clock{
+font-size:28px;
+margin-bottom:30px;
+line-height:1.4;
+}
+
+.ms{
+font-size:16px;
+}
+
+input{
+padding:14px;
+margin:6px;
+width:80%;
+max-width:320px;
+border-radius:10px;
+border:1px solid #ddd;
+font-size:16px;
+}
+
+button{
+margin-top:20px;
+padding:16px 40px;
+background:#2EE6C6;
+border:none;
+border-radius:14px;
+color:white;
+font-size:18px;
+font-weight:600;
+}
+
+#result{
+margin-top:30px;
+white-space:pre-line;
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="clock"></div>
+
+<input id="name" placeholder="신청자 이름"><br>
+<input id="phone" placeholder="전화번호"><br>
+
+<button onclick="submitForm()">제출!</button>
+
+<div id="result"></div>
+
+<script>
+
+function updateClock(){
+const now = new Date();
+
+const date =
+now.getFullYear()+"-"+ 
+String(now.getMonth()+1).padStart(2,"0")+"-"+ 
+String(now.getDate()).padStart(2,"0");
+
+const time =
+String(now.getHours()).padStart(2,"0")+":"+
+String(now.getMinutes()).padStart(2,"0")+":"+
+String(now.getSeconds()).padStart(2,"0");
+
+const ms =
+String(now.getMilliseconds()).padStart(3,"0");
+
+document.getElementById("clock").innerHTML =
+date+"<br>"+time+".<span class='ms'>"+ms+"</span>";
+}
+
+setInterval(updateClock,10);
+
+function submitForm(){
+
+const name=document.getElementById("name").value;
+const phone=document.getElementById("phone").value;
+
+const now=new Date();
+
+const time=
+String(now.getHours()).padStart(2,"0")+":"+
+String(now.getMinutes()).padStart(2,"0")+":"+
+String(now.getSeconds()).padStart(2,"0")+"."+
+String(now.getMilliseconds()).padStart(3,"0");
+
+document.getElementById("result").innerText=
+"이름 : "+name+"\n"+
+"전화번호 : "+phone+"\n"+
+"제출 시간 : "+time;
+
+}
+
+</script>
+
+</body>
+</html>
