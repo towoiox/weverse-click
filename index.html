@@ -1,3 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>위버스 연습</title>
+
+<style>
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+text-align:center;
+}
+
+#navy-wrap{
+height:170px;
+overflow:hidden;
+}
+
+#navy{
+width:100%;
+height:600px;
+border:none;
+margin-top:-140px;
+}
+
+#main{
+padding:10px 15px 15px 15px;
+}
+
+#clock{
+font-size:48px;
+margin-bottom:20px;
+font-weight:700;
+color:#6ec6ff;
+transition:color 0.1s linear;
+}
+
+.ms{
+font-size:30px;
+}
+
+.shake{
+animation:shake 0.08s infinite;
+}
+
+@keyframes shake{
+0%{transform:translate(0px,0px);}
+25%{transform:translate(1px,-1px);}
+50%{transform:translate(-1px,1px);}
+75%{transform:translate(1px,1px);}
+100%{transform:translate(0px,0px);}
+}
+
+input{
+padding:12px;
+margin:5px;
+width:80%;
+max-width:320px;
+border-radius:10px;
+border:1px solid #ddd;
+font-size:16px;
+}
+
+button{
+margin-top:15px;
+padding:14px 35px;
+background:#6ec6ff;
+border:none;
+border-radius:14px;
+color:white;
+font-size:18px;
+font-weight:600;
+}
+
+#result{
+margin-top:20px;
+white-space:pre-line;
+font-size:18px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="navy-wrap">
+<iframe 
+id="navy"
+src="https://time.navyism.com/?host=weverse.io">
+</iframe>
+</div>
+
+<div id="main">
+
+<div id="clock"></div>
+
+<input id="name" placeholder="신청자 이름"><br>
+<input id="phone" placeholder="전화번호"><br>
+
+<button onclick="submitForm()">제출!</button>
+
+<div id="result"></div>
+
+</div>
+
 <script>
 
 let records=[];
@@ -82,3 +189,6 @@ records.map((t,i)=>`${i+1}. ${t}  ${messages[i] || ""}`).join("\n");
 }
 
 </script>
+
+</body>
+</html>
